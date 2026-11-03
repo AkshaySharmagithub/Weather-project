@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AuraWeather - Internship Mini Project Final Report</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg-alt: #f8fafc;
+      --card-bg: #ffffff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .doc-page {
+      max-width: 860px;
+      margin: 0 auto 2rem;
+      background: #ffffff;
+      padding: 3.5rem 4rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      position: relative;
+    }
+
+    .print-bar {
+      max-width: 860px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #1e293b;
+      color: #ffffff;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    .print-btn {
+      background: #3b82f6;
+      color: #ffffff;
+      border: none;
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: #2563eb;
+    }
+
+    .cover-header {
+      text-align: center;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .org-badge {
+      display: inline-block;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      background: #eff6ff;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1rem;
+    }
+
+    .doc-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .meta-val {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-top: 0.2rem;
+    }
+
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.45rem;
+      color: #0f172a;
+      border-left: 4px solid var(--primary);
+      padding-left: 0.75rem;
+      margin: 2.25rem 0 1rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+      color: #1e293b;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p {
+      margin-bottom: 0.9rem;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin: 0.5rem 0 1.25rem 1.5rem;
+      color: #334155;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25rem 0;
+      font-size: 0.9rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.65rem 0.85rem;
+      text-align: left;
+    }
+
+    th {
+      background: var(--bg-alt);
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .status-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .code-block {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    .rubric-box {
+      border: 2px dashed #cbd5e1;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      background: #f8fafc;
+    }
+
+    .signature-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .sig-col {
+      text-align: center;
+      width: 200px;
+    }
+
+    .sig-line {
+      border-bottom: 1px solid #475569;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .print-bar {
+        display: none;
+      }
+      .doc-page {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+        margin: 0;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-bar">
+    <div>
+      <strong>📄 Final Internship Dossier</strong>
+      <span style="font-size: 0.85rem; color: #94a3b8; margin-left: 0.5rem;">Ready to save or submit</span>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ Print / Save as PDF
+    </button>
+  </div>
+
+  <div class="doc-page">
+    <div class="cover-header">
+      <span class="org-badge">Frontend Development Internship</span>
+      <h1 class="doc-title">Weather Information Dashboard</h1>
+      <p class="doc-subtitle">Comprehensive Project Dossier & Final Submission Report</p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Project Title</span>
+        <span class="meta-val">AuraWeather Dashboard</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Domain</span>
+        <span class="meta-val">Frontend Web Development</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Intern Name</span>
+        <span class="meta-val">[Your Name]</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Intern ID / Roll No</span>
+        <span class="meta-val">[Your Intern ID / Roll No]</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Mentor Name</span>
+        <span class="meta-val">[Mentor Name]</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Project Duration</span>
+        <span class="meta-val">2 Weeks (Beginner Level)</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Technologies Used</span>
+        <span class="meta-val">HTML5, Vanilla CSS3, JavaScript (ES6+), Public Weather API</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Project Status</span>
+        <span class="meta-val" style="color: #15803d;">100% Completed</span>
+      </div>
+    </div>
+
+    <h2>1. Executive Summary & Objective</h2>
+    <p>
+      The <strong>Weather Information Dashboard (AuraWeather)</strong> is an interactive single-page web application engineered to retrieve, parse, and present global real-time meteorological conditions and extended forecasts. The application is built entirely using native web standards without relying on external frontend frameworks or styling libraries.
+    </p>
+    <p>
+      The core objective is to deliver a smooth user experience where users can seamlessly look up any city, view accurate temperature and atmospheric parameters, consult hourly and 5-day projections, use their current GPS coordinates, and toggle between dark and light color modes.
+    </p>
+
+    <h2>2. Features Compliance Matrix</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Feature</th>
+          <th>Status</th>
+          <th>Implementation Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>City Search</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Debounced autocomplete querying Open-Meteo Geocoding</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Temperature Display</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Current temp, apparent (feels-like) temp, and Min/Max pill</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Weather Condition</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>WMO code translation (e.g. Clear Sky, Rain, Thunderstorm)</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Humidity Display</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Relative humidity percentage with animated fill gauge</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Wind Speed Display</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Velocity (km/h & mph) with 360° rotating SVG compass needle</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Weather Icon</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Custom vector inline SVG icons for day and night</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Loading State</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Pulsating CSS skeleton cards during network fetch</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Error Handling</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Dedicated error card with retry button + floating toast alerts</td>
+        </tr>
+        <tr>
+          <td><strong>Required</strong></td>
+          <td>Responsive UI</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Mobile, tablet, and desktop layout with fluid CSS Grid</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>5-Day Weather Forecast</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>5 cards with day name, condition, min/max temp, rain probability</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>24-Hour Hourly Slider</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Scrollable timeline showing hourly progression for today</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>Current Location Weather</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>"My Location" button with Browser GPS & reverse geocoding</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>Dark / Light Mode</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Theme toggle with localStorage persistence</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>Recent Searches</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Clickable chips bar with delete and clear-all actions</td>
+        </tr>
+        <tr>
+          <td><strong>Bonus</strong></td>
+          <td>Unit Switcher (°C / °F)</td>
+          <td><span class="status-badge">Completed</span></td>
+          <td>Instant conversion without repeating network requests</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h2>3. 2-Week Implementation Timeline (Workspace Sheet)</h2>
+    <h3>Week 1: UI Development & API Integration</h3>
+    <ul>
+      <li><strong>Directory Setup:</strong> Created modular project repository containing <code>index.html</code>, <code>style.css</code>, and <code>app.js</code>.</li>
+      <li><strong>UI Design:</strong> Crafted a modern glassmorphic theme with backdrop filters, curated Google Fonts (Outfit & Inter), and fluid spacing.</li>
+      <li><strong>Search Interface:</strong> Built search input with clear trigger and debounced auto-suggest dropdown.</li>
+      <li><strong>API Research & Connection:</strong> Evaluated and connected to the Open-Meteo public API (100% free, no API key required, reliable CORS support).</li>
+      <li><strong>Dynamic Data Binding:</strong> Created asynchronous fetch pipelines to translate city names to coordinates and display temperature, humidity, and wind stats.</li>
+    </ul>
+
+    <h3>Week 2: Features, Testing & Finalization</h3>
+    <ul>
+      <li><strong>Loading Skeletons:</strong> Added shimmering CSS skeleton loaders to eliminate cumulative layout shifts (CLS).</li>
+      <li><strong>Error Boundaries:</strong> Created graceful fallbacks for misspelled cities, network disconnection, and geolocation denial.</li>
+      <li><strong>Extended Forecasts:</strong> Built the 24-hour hourly slider and the 5-day daily forecast cards with precipitation probability.</li>
+      <li><strong>Device Geolocation:</strong> Connected <code>navigator.geolocation</code> with BigDataCloud client reverse geocoding.</li>
+      <li><strong>Dark/Light Theme:</strong> Engineered CSS custom properties toggle saved directly in <code>localStorage</code>.</li>
+      <li><strong>Recent Searches & Units:</strong> Implemented search history chip manager and seamless Celsius/Fahrenheit conversion.</li>
+      <li><strong>Code Cleanup & Documentation:</strong> Cleaned all source code comments, verified responsive viewports, and prepared this final submission dossier.</li>
+    </ul>
+
+    <h2>4. Technical Architecture</h2>
+    <div class="code-block">
+User Input (City Name / GPS Geolocation)
+   │
+   ▼
+Open-Meteo Geocoding / BigDataCloud Reverse Geocoding
+   │ (Resolves to Latitude & Longitude)
+   ▼
+Open-Meteo Forecast REST Endpoint
+   │ (Returns Current, 24h Hourly & 7-Day Forecast Payload)
+   ▼
+JavaScript State Management (localStorage Synced)
+   │
+   ├─► Render Hero Card (Temp, Condition, SVGs)
+   ├─► Render Metrics (Humidity, Wind Direction, UV, Pressure)
+   ├─► Render 24-Hour Hourly Carousel
+   └─► Render 5-Day Daily Forecast Cards
+    </div>
+
+    <h2>5. Public API Specifications</h2>
+    <ul>
+      <li><strong>Geocoding Endpoint:</strong> <code>https://geocoding-api.open-meteo.com/v1/search?name={city}&count=5&language=en&format=json</code></li>
+      <li><strong>Forecast Endpoint:</strong> <code>https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,weather_code,wind_speed_10m,wind_direction_10m,surface_pressure&hourly=temperature_2m,weather_code,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_probability_max,precipitation_sum&timezone=auto</code></li>
+      <li><strong>Reverse Geocoding Endpoint:</strong> <code>https://api.bigdatacloud.net/data/reverse-geocode-client?latitude={lat}&longitude={lon}&localityLanguage=en</code></li>
+    </ul>
+
+    <h2>6. Deployment & Live Link Instructions</h2>
+    <p>
+      To host the project live on <strong>GitHub Pages</strong>:
+    </p>
+    <ol>
+      <li>Initialize Git in this directory: <code>git init && git add . && git commit -m "feat: complete submission"</code></li>
+      <li>Push to a public repository on GitHub.</li>
+      <li>Navigate to <strong>Settings</strong> &gt; <strong>Pages</strong> &gt; Branch: <code>main</code> &gt; <strong>Save</strong>.</li>
+      <li>The application will be live at <code>https://&lt;your-username&gt;.github.io/&lt;repo-name&gt;/</code>.</li>
+    </ol>
+
+    <div class="rubric-box">
+      <h3 style="margin-top: 0;">Evaluation & Grading Sheet (100 Marks Total)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Criteria</th>
+            <th>Max Marks</th>
+            <th>Awarded</th>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Code Structure & Cleanliness (HTML/CSS/JS)</td>
+            <td>20</td>
+            <td>_____</td>
+            <td>___________________________</td>
+          </tr>
+          <tr>
+            <td>UI/UX Design, Aesthetics & Responsiveness</td>
+            <td>25</td>
+            <td>_____</td>
+            <td>___________________________</td>
+          </tr>
+          <tr>
+            <td>API Integration, Geocoding & Error Handling</td>
+            <td>25</td>
+            <td>_____</td>
+            <td>___________________________</td>
+          </tr>
+          <tr>
+            <td>Bonus Features Implementation (Forecast, Dark Mode, Units)</td>
+            <td>20</td>
+            <td>_____</td>
+            <td>___________________________</td>
+          </tr>
+          <tr>
+            <td>Documentation, Workspace Sheet & Report</td>
+            <td>10</td>
+            <td>_____</td>
+            <td>___________________________</td>
+          </tr>
+          <tr>
+            <td><strong>Total Marks</strong></td>
+            <td><strong>100</strong></td>
+            <td><strong>_____</strong></td>
+            <td>___________________________</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="signature-row">
+        <div class="sig-col">
+          <div class="sig-line"></div>
+          <strong>Candidate Signature</strong>
+        </div>
+        <div class="sig-col">
+          <div class="sig-line"></div>
+          <strong>Mentor / Evaluator Signature</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

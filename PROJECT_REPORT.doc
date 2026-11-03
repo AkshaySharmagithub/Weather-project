@@ -1,0 +1,248 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset='utf-8'>
+<title>AuraWeather - Final Project Report</title>
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.5; color: #1e293b; margin: 1in; }
+h1 { font-size: 22pt; color: #1e3a8a; text-align: center; margin-bottom: 5px; }
+h2 { font-size: 14pt; color: #1e40af; border-bottom: 2px solid #2563eb; padding-bottom: 4px; margin-top: 20px; }
+h3 { font-size: 12pt; color: #1e293b; margin-top: 15px; }
+p { margin: 6px 0; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+th, td { border: 1px solid #cbd5e1; padding: 8px 10px; font-size: 10pt; text-align: left; }
+th { background-color: #f1f5f9; color: #0f172a; font-weight: bold; }
+.badge { background-color: #dcfce7; color: #15803d; font-weight: bold; padding: 2px 6px; }
+.meta-box { background-color: #f8fafc; border: 1px solid #e2e8f0; padding: 15px; margin: 20px 0; }
+.meta-box table { margin: 0; }
+.meta-box td { border: none; padding: 4px 8px; }
+</style>
+</head>
+<body>
+
+<h1>INTERNSHIP MINI PROJECT FINAL REPORT</h1>
+<p style="text-align: center; font-size: 13pt; color: #64748b; margin-bottom: 25px;">Frontend Web Development – Weather Information Dashboard (AuraWeather)</p>
+
+<div class="meta-box">
+  <table>
+    <tr>
+      <td width="25%"><strong>Project Title:</strong></td>
+      <td width="25%">AuraWeather Dashboard</td>
+      <td width="25%"><strong>Domain:</strong></td>
+      <td width="25%">Frontend Development</td>
+    </tr>
+    <tr>
+      <td><strong>Intern Name:</strong></td>
+      <td>[Your Name]</td>
+      <td><strong>Duration:</strong></td>
+      <td>2 Weeks</td>
+    </tr>
+    <tr>
+      <td><strong>Intern ID:</strong></td>
+      <td>[Your Intern ID / Roll No]</td>
+      <td><strong>Submission Date:</strong></td>
+      <td>November 2026</td>
+    </tr>
+    <tr>
+      <td><strong>Mentor Name:</strong></td>
+      <td>[Mentor Name]</td>
+      <td><strong>Project Status:</strong></td>
+      <td><span class="badge">100% Completed</span></td>
+    </tr>
+  </table>
+</div>
+
+<h2>1. Executive Summary & Objective</h2>
+<p>The <strong>Weather Information Dashboard</strong> is a responsive web application built using HTML5, Vanilla CSS3, and modern JavaScript (ES6+). It enables users to search for any global city or use browser GPS geolocation to view accurate, real-time meteorological conditions and extended multi-day forecasts.</p>
+<p>The application integrates the public, free <strong>Open-Meteo Geocoding and Forecast REST APIs</strong> without requiring paid subscription keys or server-side intermediaries.</p>
+
+<h2>2. Features Compliance Matrix</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Feature Category</th>
+      <th>Feature Name</th>
+      <th>Compliance</th>
+      <th>Technical Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Search City</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Real-time input with debounced autocomplete dropdown</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Display Temperature</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Current temp, apparent feels-like temp, and daily Min/Max range</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Weather Condition</td>
+      <td><span class="badge">Passed</span></td>
+      <td>WMO code translation (e.g., Clear sky, Overcast, Rain showers)</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Display Humidity</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Relative humidity percentage with animated comfort fill gauge</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Display Wind Speed</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Speed in km/h or mph + 360° rotating SVG compass needle</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Display Weather Icon</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Scalable vector inline SVG icons for day and night conditions</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Loading State</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Shimmering CSS skeleton loader cards during network requests</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Error Handling</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Contextual error banners with retry button + floating toast alerts</td>
+    </tr>
+    <tr>
+      <td><strong>Required</strong></td>
+      <td>Responsive UI</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Fluid CSS Grid layout tested on Mobile, Tablet, and Desktop</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>5-Day Weather Forecast</td>
+      <td><span class="badge">Passed</span></td>
+      <td>5 daily forecast cards with date, condition, min/max temps, rain %</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>24-Hour Hourly Forecast</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Scrollable carousel displaying hourly forecast trajectory for today</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>Current Location Weather</td>
+      <td><span class="badge">Passed</span></td>
+      <td>"My Location" GPS button with client reverse geocoding</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>Dark / Light Mode</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Instant theme toggle with localStorage persistence</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>Recent Searches History</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Clickable chip tags with one-click re-search and clear action</td>
+    </tr>
+    <tr>
+      <td><strong>Bonus</strong></td>
+      <td>Unit Switcher (°C / °F)</td>
+      <td><span class="badge">Passed</span></td>
+      <td>Instant conversion of all values without refetching data</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>3. Weekly Implementation Milestones (Workspace Sheet)</h2>
+<h3>Week 1: UI Development & API Integration</h3>
+<ul>
+  <li>Setup semantic HTML5 markup and clean file structure (index.html, style.css, app.js).</li>
+  <li>Implemented glassmorphic CSS design system with custom properties and responsive grids.</li>
+  <li>Built city search bar with debounced autocomplete querying Open-Meteo Geocoding.</li>
+  <li>Integrated Open-Meteo REST API and handled asynchronous fetch promises.</li>
+  <li>Mapped WMO weather codes to dynamic condition descriptions and vector SVG icons.</li>
+</ul>
+
+<h3>Week 2: Features, Testing & Finalization</h3>
+<ul>
+  <li>Added custom shimmering skeleton loaders for smooth loading states.</li>
+  <li>Implemented error handling for invalid cities, network disconnection, and geolocation denial.</li>
+  <li>Added 5-day daily forecast cards and 24-hour horizontal hourly slider.</li>
+  <li>Connected HTML5 Geolocation API with BigDataCloud reverse geocoding for "My Location".</li>
+  <li>Added Dark/Light mode theme switch with localStorage persistence.</li>
+  <li>Implemented recent searches history and Metric/Imperial (°C/°F) unit conversion.</li>
+  <li>Cleaned all source code comments and finalized project documentation.</li>
+</ul>
+
+<h2>4. Evaluation & Grading Matrix</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Evaluation Parameter</th>
+      <th>Max Marks</th>
+      <th>Marks Awarded</th>
+      <th>Evaluator Remarks</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Source Code Quality & Architecture</td>
+      <td>20</td>
+      <td>_____</td>
+      <td>_______________________________</td>
+    </tr>
+    <tr>
+      <td>UI/UX Aesthetics & Responsiveness</td>
+      <td>25</td>
+      <td>_____</td>
+      <td>_______________________________</td>
+    </tr>
+    <tr>
+      <td>API Integration & Error Handling</td>
+      <td>25</td>
+      <td>_____</td>
+      <td>_______________________________</td>
+    </tr>
+    <tr>
+      <td>Bonus Features Implementation</td>
+      <td>20</td>
+      <td>_____</td>
+      <td>_______________________________</td>
+    </tr>
+    <tr>
+      <td>Documentation, Workspace Sheet & Report</td>
+      <td>10</td>
+      <td>_____</td>
+      <td>_______________________________</td>
+    </tr>
+    <tr>
+      <td><strong>Total Marks</strong></td>
+      <td><strong>100</strong></td>
+      <td><strong>_____</strong></td>
+      <td>_______________________________</td>
+    </tr>
+  </tbody>
+</table>
+
+<br><br>
+<table style="border: none;">
+  <tr style="border: none;">
+    <td style="border: none; text-align: center; width: 50%;">
+      ________________________________<br>
+      <strong>Candidate Signature</strong>
+    </td>
+    <td style="border: none; text-align: center; width: 50%;">
+      ________________________________<br>
+      <strong>Mentor / Evaluator Signature</strong>
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
